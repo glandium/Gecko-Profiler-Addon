@@ -48,6 +48,19 @@ function get_feature_pref(feature) {
       return gFeaturesPrefs[feature] === true;
 }
 
+function sps_disconnect_remote() {
+    self.port.emit("rdpdisconnect", "test");
+    document.getElementById("btnToggleRemote").innerHTML = "Connect Remote";
+    document.getElementById("btnToggleRemote").onclick = sps_connect_remote;
+}
+function sps_connect_remote() {
+    self.port.emit("rdpconnect", "test");
+    document.getElementById("btnToggleRemote").innerHTML = "Disconnect Remote";
+    document.getElementById("btnToggleRemote").onclick = sps_disconnect_remote;
+}
+document.getElementById("btnToggleRemote").innerHTML = "Connect Remote";
+document.getElementById("btnToggleRemote").onclick = sps_connect_remote;
+
 function sps_toggle_active() {
     self.port.emit("toggle", "test");   
 }
